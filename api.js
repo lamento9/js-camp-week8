@@ -8,14 +8,14 @@ const { API_PATH, BASE_URL, ADMIN_TOKEN } = require("./config");
 // ========== 客戶端 API ==========
 
 /**
- * 取得產品列表
+ * 取得產品列表·
  * @returns {Promise<Array>}
  */
 async function fetchProducts() {
   // 請實作此函式
   // 回傳 response.data.products
   const response = await axios.get(
-    `${BASE_URL}/api/livejs/v1/customer/${API_PATH}/products`,
+    `${BASE_URL}/api/livejs/v1/customer/${API_PATH}/products`
   );
   return response.data.products;
 }
@@ -27,7 +27,7 @@ async function fetchProducts() {
 async function fetchCart() {
   // 請實作此函式
   const response = await axios.get(
-    `${BASE_URL}/api/livejs/v1/customer/${API_PATH}/carts`,
+    `${BASE_URL}/api/livejs/v1/customer/${API_PATH}/carts`
   );
   return {
     carts: [...response.data.carts],
@@ -51,7 +51,7 @@ async function addToCart(productId, quantity) {
         productId,
         quantity,
       },
-    },
+    }
   );
   return response.data;
 }
@@ -71,7 +71,7 @@ async function updateCartItem(cartId, quantity) {
         id: cartId,
         quantity,
       },
-    },
+    }
   );
   return response.data;
 }
@@ -84,7 +84,7 @@ async function updateCartItem(cartId, quantity) {
 async function deleteCartItem(cartId) {
   // 請實作此函式
   const response = await axios.delete(
-    `${BASE_URL}/api/livejs/v1/customer/${API_PATH}/carts/${cartId}`,
+    `${BASE_URL}/api/livejs/v1/customer/${API_PATH}/carts/${cartId}`
   );
   return response.data;
 }
@@ -96,7 +96,7 @@ async function deleteCartItem(cartId) {
 async function clearCart() {
   // 請實作此函式
   const response = await axios.delete(
-    `${BASE_URL}/api/livejs/v1/customer/${API_PATH}/carts`,
+    `${BASE_URL}/api/livejs/v1/customer/${API_PATH}/carts`
   );
   return response.data;
 }
@@ -112,9 +112,15 @@ async function createOrder(userInfo) {
     `${BASE_URL}/api/livejs/v1/customer/${API_PATH}/orders`,
     {
       data: {
-        user: userInfo,
+        user: {
+          name: userInfo.name,
+          tel: userInfo.tel,
+          email: userInfo.email,
+          address: userInfo.address,
+          payment: userInfo.payment,
+        },
       },
-    },
+    }
   );
   return response.data;
 }
@@ -141,7 +147,7 @@ async function fetchOrders() {
       headers: {
         authorization: ADMIN_TOKEN,
       },
-    },
+    }
   );
   return response.data.orders;
 }
@@ -166,7 +172,7 @@ async function updateOrderStatus(orderId, isPaid) {
       headers: {
         authorization: ADMIN_TOKEN,
       },
-    },
+    }
   );
   return response.data;
 }
@@ -184,7 +190,7 @@ async function deleteOrder(orderId) {
       headers: {
         authorization: ADMIN_TOKEN,
       },
-    },
+    }
   );
   return response.data;
 }
