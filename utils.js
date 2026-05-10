@@ -53,8 +53,9 @@ function getDaysAgo(timestamp) {
   const diff = today.diff(orderDate, "day");
   if (diff < 1) {
     return "今天";
+  } else {
+    return `${diff} 天前`;
   }
-  return `${diff} 天前`;
 }
 
 /**

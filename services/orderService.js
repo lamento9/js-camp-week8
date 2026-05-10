@@ -185,18 +185,18 @@ function displayOrders(orders) {
     console.log("----------------------------------------");
     console.log(`訂單編號：${formattedOrder.id}`);
     console.log(`顧客姓名：${formattedOrder.user.name}`);
-    console.log(`聯絡電話：${formattedOrder.user.phone}`);
+    console.log(`聯絡電話：${formattedOrder.user.tel}`);
     console.log(`寄送地址：${formattedOrder.user.address}`);
-    console.log(`付款方式：${formattedOrder.user.paymentMethod}`);
+    console.log(`付款方式：${formattedOrder.user.payment}`);
     console.log(`訂單金額：${formattedOrder.totalFormatted}`);
     console.log(`付款狀態：${formattedOrder.paidText}`);
     console.log(
-      `建立時間：${formattedOrder.createdAt} (${formattedOrder.daysAgo} 天前)`
+      `建立時間：${formattedOrder.createdAt} (${formattedOrder.daysAgo} )`
     );
     console.log("----------------------------------------");
     console.log("商品明細：");
     formattedOrder.products.forEach((product) => {
-      console.log(`  - ${product.name} x ${product.quantity}（產品數量）`);
+      console.log(`  - ${product.title} x ${product.quantity}（產品數量）`);
     });
     console.log("========================================");
   });
